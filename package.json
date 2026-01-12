@@ -14,7 +14,7 @@
     "express",
     "sap-cpi"
   ],
-  "author": "Vikas Kumar",
+  "author": "Vikash Kumar",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
