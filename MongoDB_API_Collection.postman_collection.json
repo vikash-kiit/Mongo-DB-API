@@ -2,7 +2,7 @@
     "info": {
         "_postman_id": "mongodb-api-collection",
         "name": "MongoDB API - Railway",
-        "description": "MongoDB API deployed on Railway",
+        "description": "MongoDB API deployed on Railway - Complete test collection with sample data",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "variable": [
@@ -14,241 +14,634 @@
     ],
     "item": [
         {
-            "name": "Health Check",
-            "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                    "raw": "{{baseUrl}}/",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        ""
-                    ]
-                },
-                "description": "Check if the API is running"
-            }
-        },
-        {
-            "name": "List All Collections",
-            "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                    "raw": "{{baseUrl}}/api/collections",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "api",
-                        "collections"
-                    ]
-                },
-                "description": "Get list of all collections in the database"
-            }
-        },
-        {
-            "name": "Get All Documents",
-            "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                    "raw": "{{baseUrl}}/api/data/users",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "api",
-                        "data",
-                        "users"
-                    ]
-                },
-                "description": "Get all documents from a collection. Replace 'users' with your collection name."
-            }
-        },
-        {
-            "name": "Get Document by ID",
-            "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                    "raw": "{{baseUrl}}/api/data/users/YOUR_DOCUMENT_ID",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "api",
-                        "data",
-                        "users",
-                        "YOUR_DOCUMENT_ID"
-                    ]
-                },
-                "description": "Get a single document by its ID"
-            }
-        },
-        {
-            "name": "Create Document",
-            "request": {
-                "method": "POST",
-                "header": [
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json"
+            "name": "🏥 Health & Info",
+            "item": [
+                {
+                    "name": "Health Check",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                ""
+                            ]
+                        },
+                        "description": "Check if the API is running"
                     }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{\n    \"name\": \"Vikas Kumar\",\n    \"email\": \"vikas@example.com\",\n    \"age\": 25,\n    \"city\": \"Delhi\"\n}"
                 },
-                "url": {
-                    "raw": "{{baseUrl}}/api/data/users",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "api",
-                        "data",
-                        "users"
-                    ]
-                },
-                "description": "Create a new document in the collection"
-            }
-        },
-        {
-            "name": "Bulk Insert Documents",
-            "request": {
-                "method": "POST",
-                "header": [
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json"
+                {
+                    "name": "List All Collections",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/collections",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "collections"
+                            ]
+                        },
+                        "description": "Get list of all collections in the database"
                     }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{\n    \"documents\": [\n        {\"name\": \"Laptop\", \"price\": 50000, \"category\": \"Electronics\"},\n        {\"name\": \"Phone\", \"price\": 25000, \"category\": \"Electronics\"},\n        {\"name\": \"Headphones\", \"price\": 2000, \"category\": \"Accessories\"}\n    ]\n}"
-                },
-                "url": {
-                    "raw": "{{baseUrl}}/api/data/products/bulk",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "api",
-                        "data",
-                        "products",
-                        "bulk"
-                    ]
-                },
-                "description": "Insert multiple documents at once"
-            }
+                }
+            ]
         },
         {
-            "name": "Query with Filters",
-            "request": {
-                "method": "POST",
-                "header": [
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json"
+            "name": "👥 Users",
+            "item": [
+                {
+                    "name": "Get All Users",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/users",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "users"
+                            ]
+                        },
+                        "description": "Get all users from the collection"
                     }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{\n    \"filter\": {\"age\": {\"$gte\": 20}},\n    \"sort\": {\"name\": 1},\n    \"limit\": 10\n}"
                 },
-                "url": {
-                    "raw": "{{baseUrl}}/api/data/users/query",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "api",
-                        "data",
-                        "users",
-                        "query"
-                    ]
-                },
-                "description": "Query documents with MongoDB filter, sort, and limit"
-            }
-        },
-        {
-            "name": "Update Document",
-            "request": {
-                "method": "PUT",
-                "header": [
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json"
+                {
+                    "name": "Get User by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/users/YOUR_USER_ID",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "users",
+                                "YOUR_USER_ID"
+                            ]
+                        },
+                        "description": "Get a single user by ID. Replace YOUR_USER_ID with actual ID."
                     }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{\n    \"name\": \"Vikas Kumar Updated\",\n    \"age\": 26\n}"
                 },
-                "url": {
-                    "raw": "{{baseUrl}}/api/data/users/YOUR_DOCUMENT_ID",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "api",
-                        "data",
-                        "users",
-                        "YOUR_DOCUMENT_ID"
-                    ]
-                },
-                "description": "Update an existing document by ID"
-            }
-        },
-        {
-            "name": "Delete Document",
-            "request": {
-                "method": "DELETE",
-                "header": [],
-                "url": {
-                    "raw": "{{baseUrl}}/api/data/users/YOUR_DOCUMENT_ID",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "api",
-                        "data",
-                        "users",
-                        "YOUR_DOCUMENT_ID"
-                    ]
-                },
-                "description": "Delete a document by ID"
-            }
-        },
-        {
-            "name": "Create Test Document",
-            "request": {
-                "method": "POST",
-                "header": [
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json"
+                {
+                    "name": "Create User",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"New User\",\n    \"email\": \"newuser@example.com\",\n    \"age\": 28,\n    \"city\": \"Chennai\",\n    \"phone\": \"+91-9876543215\",\n    \"isActive\": true\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/users",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "users"
+                            ]
+                        },
+                        "description": "Create a new user"
                     }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{\n    \"message\": \"Hello MongoDB!\",\n    \"timestamp\": \"2026-01-12T22:09:00\",\n    \"status\": \"success\"\n}"
                 },
-                "url": {
-                    "raw": "{{baseUrl}}/api/data/test",
-                    "host": [
-                        "{{baseUrl}}"
-                    ],
-                    "path": [
-                        "api",
-                        "data",
-                        "test"
-                    ]
+                {
+                    "name": "Query Users (Age >= 25)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"filter\": {\"age\": {\"$gte\": 25}},\n    \"sort\": {\"name\": 1},\n    \"limit\": 10\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/users/query",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "users",
+                                "query"
+                            ]
+                        },
+                        "description": "Query users with age >= 25"
+                    }
                 },
-                "description": "Quick test to create a document in 'test' collection"
-            }
+                {
+                    "name": "Query Active Users",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"filter\": {\"isActive\": true},\n    \"sort\": {\"name\": 1}\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/users/query",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "users",
+                                "query"
+                            ]
+                        },
+                        "description": "Get all active users"
+                    }
+                },
+                {
+                    "name": "Update User",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Updated Name\",\n    \"age\": 30,\n    \"city\": \"Pune\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/users/YOUR_USER_ID",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "users",
+                                "YOUR_USER_ID"
+                            ]
+                        },
+                        "description": "Update a user by ID"
+                    }
+                },
+                {
+                    "name": "Delete User",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/users/YOUR_USER_ID",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "users",
+                                "YOUR_USER_ID"
+                            ]
+                        },
+                        "description": "Delete a user by ID"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "📦 Products",
+            "item": [
+                {
+                    "name": "Get All Products",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/products",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "products"
+                            ]
+                        },
+                        "description": "Get all products"
+                    }
+                },
+                {
+                    "name": "Create Product",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Tablet\",\n    \"price\": 35000,\n    \"category\": \"Electronics\",\n    \"brand\": \"Apple\",\n    \"stock\": 20,\n    \"description\": \"iPad Pro 11-inch\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/products",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "products"
+                            ]
+                        },
+                        "description": "Create a new product"
+                    }
+                },
+                {
+                    "name": "Bulk Insert Products",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"documents\": [\n        {\"name\": \"USB Cable\", \"price\": 500, \"category\": \"Accessories\", \"brand\": \"Generic\", \"stock\": 200},\n        {\"name\": \"Power Bank\", \"price\": 2500, \"category\": \"Electronics\", \"brand\": \"Mi\", \"stock\": 50},\n        {\"name\": \"Webcam\", \"price\": 3000, \"category\": \"Electronics\", \"brand\": \"Logitech\", \"stock\": 25}\n    ]\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/products/bulk",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "products",
+                                "bulk"
+                            ]
+                        },
+                        "description": "Insert multiple products at once"
+                    }
+                },
+                {
+                    "name": "Query Electronics Products",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"filter\": {\"category\": \"Electronics\"},\n    \"sort\": {\"price\": -1}\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/products/query",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "products",
+                                "query"
+                            ]
+                        },
+                        "description": "Get all Electronics products sorted by price"
+                    }
+                },
+                {
+                    "name": "Query Products by Price Range",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"filter\": {\"price\": {\"$gte\": 5000, \"$lte\": 50000}},\n    \"sort\": {\"price\": 1}\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/products/query",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "products",
+                                "query"
+                            ]
+                        },
+                        "description": "Get products with price between 5000 and 50000"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "🧾 Orders",
+            "item": [
+                {
+                    "name": "Get All Orders",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/orders",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "orders"
+                            ]
+                        },
+                        "description": "Get all orders"
+                    }
+                },
+                {
+                    "name": "Create Order",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"orderNumber\": \"ORD-2026-004\",\n    \"customerName\": \"Amit Patel\",\n    \"customerEmail\": \"amit@example.com\",\n    \"items\": [\n        {\"productName\": \"Keyboard\", \"quantity\": 1, \"price\": 5000},\n        {\"productName\": \"Mouse\", \"quantity\": 1, \"price\": 1500}\n    ],\n    \"totalAmount\": 6500,\n    \"status\": \"pending\",\n    \"shippingAddress\": \"456 Tech Street, Ahmedabad\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/orders",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "orders"
+                            ]
+                        },
+                        "description": "Create a new order"
+                    }
+                },
+                {
+                    "name": "Query Delivered Orders",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"filter\": {\"status\": \"delivered\"},\n    \"sort\": {\"orderDate\": -1}\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/orders/query",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "orders",
+                                "query"
+                            ]
+                        },
+                        "description": "Get all delivered orders"
+                    }
+                },
+                {
+                    "name": "Query Orders by Amount",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"filter\": {\"totalAmount\": {\"$gte\": 25000}},\n    \"sort\": {\"totalAmount\": -1}\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/orders/query",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "orders",
+                                "query"
+                            ]
+                        },
+                        "description": "Get orders with total amount >= 25000"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "👔 Employees",
+            "item": [
+                {
+                    "name": "Get All Employees",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/employees",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "employees"
+                            ]
+                        },
+                        "description": "Get all employees"
+                    }
+                },
+                {
+                    "name": "Create Employee",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"employeeId\": \"EMP005\",\n    \"firstName\": \"Deepak\",\n    \"lastName\": \"Sharma\",\n    \"email\": \"deepak.sharma@company.com\",\n    \"department\": \"Engineering\",\n    \"position\": \"DevOps Engineer\",\n    \"salary\": 100000,\n    \"joinDate\": \"2025-06-01\",\n    \"skills\": [\"Docker\", \"Kubernetes\", \"AWS\", \"CI/CD\"],\n    \"isActive\": true\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/employees",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "employees"
+                            ]
+                        },
+                        "description": "Create a new employee"
+                    }
+                },
+                {
+                    "name": "Query Engineering Employees",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"filter\": {\"department\": \"Engineering\"},\n    \"sort\": {\"salary\": -1}\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/employees/query",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "employees",
+                                "query"
+                            ]
+                        },
+                        "description": "Get all Engineering department employees"
+                    }
+                },
+                {
+                    "name": "Query High Salary Employees",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"filter\": {\"salary\": {\"$gte\": 80000}},\n    \"sort\": {\"salary\": -1}\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/employees/query",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "employees",
+                                "query"
+                            ]
+                        },
+                        "description": "Get employees with salary >= 80000"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "🧪 Test Collection",
+            "item": [
+                {
+                    "name": "Get All Test Documents",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/test",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "test"
+                            ]
+                        },
+                        "description": "Get all test documents"
+                    }
+                },
+                {
+                    "name": "Create Test Document",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"message\": \"Hello MongoDB!\",\n    \"timestamp\": \"2026-01-12T22:37:00\",\n    \"status\": \"success\",\n    \"type\": \"test\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/data/test",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "data",
+                                "test"
+                            ]
+                        },
+                        "description": "Quick test to create a document in 'test' collection"
+                    }
+                }
+            ]
         }
     ]
 }
