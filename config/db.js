@@ -7,6 +7,11 @@ const connectDB = async () => {
     try {
         const uri = process.env.MONGODB_URI;
 
+        // Validate that MONGODB_URI is set
+        if (!uri) {
+            throw new Error('MONGODB_URI environment variable is not set. Please configure it in your Railway Variables or .env file.');
+        }
+
         // Create a MongoClient with a MongoClientOptions object
         client = new MongoClient(uri, {
             serverApi: {
